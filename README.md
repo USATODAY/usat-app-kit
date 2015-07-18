@@ -3,7 +3,7 @@ USAT-APP-KIT
 
 # What this kit does
 - processes SASS into CSS
-- reuns autoprefixer on CSS
+- runs autoprefixer on CSS
 - bundles JS files via Webpack/Babel
 - generates static HTML from [Nunjucks templates](http://mozilla.github.io/nunjucks/)
 - runs a dev server with live reload
@@ -31,5 +31,5 @@ gulp server
 
 
 ## Inspired By
-https://github.com/texastribune/newsapps-app-kit and https://github.com/nprapps/app-template/ and https://github.com/greypants/gulp-starter/tree/2.0
+https://github.com/texastribune/newsapps-app-kit, https://github.com/nprapps/app-template/, https://github.com/greypants/gulp-starter/tree/2.0, and https://github.com/wuaiwuai/gulp-webpack-template
 
