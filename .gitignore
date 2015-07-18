@@ -1,0 +1,10 @@
+.DS_Store
+.sass-cache
+Desktop.ini
+
+## assetts
+app/assetts/
+
+## build files
+public
+node_modules
