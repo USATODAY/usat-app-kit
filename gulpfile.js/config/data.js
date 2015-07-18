@@ -2,5 +2,6 @@
 
 var config = require('./');
 module.exports = {
-    dataPath: config.sourceDirectory + "/data/"
-}
+    src: config.sourceDirectory + "/data/",
+    dest: config.publicDirectory + '/data/'
+};

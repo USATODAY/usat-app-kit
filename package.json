@@ -41,6 +41,7 @@
   "devDependencies": {
     "compression": "^1.4.1",
     "express": "^4.13.1",
+    "gulp-data": "^1.2.0",
     "gulp-nunjucks-render": "^0.2.1",
     "morgan": "^1.6.1",
     "open": "0.0.5"
