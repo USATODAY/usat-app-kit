@@ -1,0 +1,50 @@
+article * {
+   -moz-box-sizing:    border-box;   /* Firefox 1, probably can drop this */
+   -webkit-box-sizing: border-box;   /* Safari 3-4, also probably droppable */
+    box-sizing:        border-box;   /* Everything else */
+}
+
+header * {
+    box-sizing: content-box;
+}
+
+div.non-article-content{
+  padding: 0 !important;
+}
+
+body, html, article {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+article {
+  background: $light-grey !important;
+  font-family: "Futura Today Bold", Arial,sans-serif;
+  font-size: 100%;
+  padding: 0 !important;
+  width: 100% !important;
+  @media (max-width: 500px) {
+    font-size: 85%;
+  }
+}
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.iapp-clickable {
+  cursor: pointer;
+}
+
+
+/*******
+remove top margin when we remove header
+******/
+
+.in-app article.padded-container, .in-app article.padded-container.first-margin, .in-app.has-notifications article.padded-container {
+    //have to override inline style
+    margin-top: 0 !important;
+}

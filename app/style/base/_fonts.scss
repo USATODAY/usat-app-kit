@@ -1,0 +1,38 @@
+/************
+
+Fonts
+
+************/
+
+@font-face {
+    font-family: 'Futura Today Light';
+    src: url('http://www.gannett-cdn.com/GDContent/global/fonts/futura_today_light.eot') format('eot');
+    src: url('http://www.gannett-cdn.com/GDContent/global/fonts/futura_today_light.woff') format('woff'),
+         url('http://www.gannett-cdn.com/GDContent/global/fonts/futura_today_light.ttf') format('truetype'),
+         url('http://www.gannett-cdn.com/GDContent/global/fonts/futura_today_light.svg') format('svg');
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: 'Futura Today Normal';
+    src: url('http://www.gannett-cdn.com/GDContent/global/fonts/futura_today_normal.eot') format('eot');
+    src: url('http://www.gannett-cdn.com/GDContent/global/fonts/futura_today_normal.woff') format('woff'),
+         url('http://www.gannett-cdn.com/GDContent/global/fonts/futura_today_normal.ttf') format('truetype');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Futura Today Demibold';
+    src: url('http://www.gannett-cdn.com/GDContent/global/fonts/futura_today_demibold.eot') format('eot');
+    src: url('http://www.gannett-cdn.com/GDContent/global/fonts/futura_today_demibold.woff') format('woff'),
+         url('http://www.gannett-cdn.com/GDContent/global/fonts/futura_today_demibold.ttf') format('truetype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Futura Today Bold';
+    src: url('http://www.gannett-cdn.com/GDContent/global/fonts/futura_today_bold.eot') format('eot');
+    src: url('http://www.gannett-cdn.com/GDContent/global/fonts/futura_today_bold.woff') format('woff'),
+         url('http://www.gannett-cdn.com/GDContent/global/fonts/futura_today_bold.ttf') format('truetype');
+    font-weight: 700;
+}
