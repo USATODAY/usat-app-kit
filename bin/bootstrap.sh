@@ -18,3 +18,6 @@ git init
 # commit new graphic
 git add .
 git commit -m "setup $SLUG from template."
+
+# install dependencies
+npm install
