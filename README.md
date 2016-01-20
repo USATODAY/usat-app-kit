@@ -29,8 +29,6 @@ To run your new project locally run:
 ```
 $ gulp
 ```
-You may need to alias `gulp` to `node_modules/.bin/gulp`, or `npm install -g gulp`.
-
 ## Preview production environment
 ```
 $ gulp build:production
