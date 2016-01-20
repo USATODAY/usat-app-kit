@@ -15,14 +15,13 @@ if (month < 10) {
     month = month.toString();
 }
 
-npm_package.name = slug
-npm_package.config.year = year;
-npm_package.config.month = month;
-
 if (!npm_package.config) {
     npm_package.config = {};
 };
 
+npm_package.name = slug
+npm_package.config.year = year;
+npm_package.config.month = month;
 npm_package.config.app_slug = slug;
 
 fs.writeFile(__dirname + '/../app/data/app_config.json', JSON.stringify(app_config), function(err) {
