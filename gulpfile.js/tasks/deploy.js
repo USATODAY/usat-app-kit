@@ -1,11 +1,11 @@
 var gulp = require( 'gulp' );
 var gutil = require('gulp-util');
 var ftp = require( 'vinyl-ftp' );
-var app_config = require('../../app/data/app_config.json');
+var npm_package = require('../../package.json');
 
 var FTP_USER = process.env.USAT_FTP_USER;
 var FTP_PASS = process.env.USAT_FTP_PASS;
-var dest = "/17200/experiments/usatoday/" + app_config.year + '/' + app_config.mongth + '/' + app_config.graphic_slug;
+var dest = "/17200/experiments/usatoday/" + npm_package.config.year + '/' + npm_package.config.month + '/' + npm_package.config.graphic_slug;
 
 gulp.task( 'deploy', function () {
 
