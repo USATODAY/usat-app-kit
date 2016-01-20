@@ -33,6 +33,6 @@ You may need to alias `gulp` to `node_modules/.bin/gulp`, or `npm install -g gul
 
 ## Preview production environment
 ```
-gulp build:production
-gulp server
+$ gulp build:production
+$ gulp server
 ```
