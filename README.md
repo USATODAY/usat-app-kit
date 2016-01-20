@@ -10,26 +10,29 @@ USAT-APP-KIT
 
 # Getting Started
 
-## Install dependencies
+First, clone this repository into a new directory. The name of your new directory will be used as the new project's slug.
+
+Example:
 ```
-npm install
+$ git clone git@github.com:usatoday/usat-app-kit.git new-project
 ```
+
+## Run setup script
+```
+$ npm run setup
+```
+
+This will start your new project as it's own git repository, set up some configuration, and install dependencies.
 
 ## Start gulp
+To run your new project locally run:
 ```
-gulp
+$ gulp
 ```
 You may need to alias `gulp` to `node_modules/.bin/gulp`, or `npm install -g gulp`.
-
-Start editing assets and views from the `gulp/assets` and `gulp/views` folder. Files compile to `public`.
 
 ## Preview production environment
 ```
 gulp build:production
 gulp server
 ```
-
-
-## Inspired By
-https://github.com/texastribune/newsapps-app-kit, https://github.com/nprapps/app-template/, https://github.com/greypants/gulp-starter/tree/2.0, and https://github.com/wuaiwuai/gulp-webpack-template
-
