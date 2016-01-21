@@ -41,13 +41,13 @@ module.exports = function(env) {
     };
 
     // Factor out common dependencies into a shared.js
-    webpackConfig.plugins.push(
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'shared',
+    // webpackConfig.plugins.push(
+    //   new webpack.optimize.CommonsChunkPlugin({
+    //     name: 'shared',
         // filename: env === 'production' ? '[name]-[hash].js' : '[name].js'
-        filename: '[name].js'
-      })
-    );
+      //   filename: '[name].js'
+      // })
+    // );
   }
 
   if (env === 'development') {
