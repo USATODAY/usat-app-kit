@@ -6,7 +6,8 @@
 {% extends 'layouts/application.html' %}
 
 {% block content %}
-<div class="button">{{data.chatter}}</div>
+<h1>{{app_config.header}}</h1>
+<div class="button">{{app_config.chatter}}</div>
 {% endblock %}
 
 {% block javascript %}

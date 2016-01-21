@@ -7,6 +7,6 @@ var dataFiles = fs.readdirSync(dataConfig.src);
 module.exports = function() {
     var data = {};
 
-    data.graphic_config = JSON.parse(fs.readFileSync(dataConfig.src + "app_config.json"));
+    data.app_config = JSON.parse(fs.readFileSync(dataConfig.src + "app_config.json"));
     return data;
 };
