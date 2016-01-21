@@ -5,7 +5,7 @@ var npm_package = require('../../package.json');
 
 var FTP_USER = process.env.USAT_FTP_USER;
 var FTP_PASS = process.env.USAT_FTP_PASS;
-var dest = "/17200/experiments/usatoday/" + npm_package.config.year + '/' + npm_package.config.month + '/' + npm_package.config.graphic_slug;
+var dest = "/17200/experiments/usatoday/" + npm_package.config.year + '/' + npm_package.config.month + '/' + npm_package.config.app_slug;
 
 gulp.task( 'deploy', function () {
 
