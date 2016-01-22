@@ -8,6 +8,8 @@
   }
 }(this, function(_) {
     var Analytics = {
+
+        isInitialized: false,
      
         hasUtag: false,
         
@@ -101,6 +103,15 @@
                 window.utag.track('view', options);
             }
             else {
+                this.loadUtag();
+            }
+        },
+        setup: function(clicknameBase) {
+            if (!this.isInitialized) {
+                this.setClickArgs({
+                    'clicknameBase': clicknameBase
+                });
+
                 this.loadUtag();
             }
         }
