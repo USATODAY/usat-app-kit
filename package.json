@@ -38,6 +38,7 @@
     "gulp-util": "^3.0.0",
     "gulp-watch": "^4.1.1",
     "json-loader": "^0.5.4",
+    "jquery": "^2.2.1",
     "lodash": "^3.5.0",
     "merge-stream": "^0.1.7",
     "morgan": "^1.6.1",
