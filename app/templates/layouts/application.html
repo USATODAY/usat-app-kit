@@ -1,15 +1,14 @@
 <!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>{% block title %}USA TODAY APP KIT{% endblock %}</title>
-  <link rel="stylesheet" href="style/project.css">
-  {% block head %}{% endblock %}
-</head>
-<body>
-    <div class="card">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <title>{% block title %}USA TODAY APP KIT{% endblock %}</title>
+        <link rel="stylesheet" href="style/project.css">
+        {% block head %}{% endblock %}
+    </head>
+    <body>
         {% block content %}{% endblock %}
-    </div>
-  {% block javascript %}{% endblock %}
-</body>
+        {% block javascript %}{% endblock %}
+    </body>
 </html>
