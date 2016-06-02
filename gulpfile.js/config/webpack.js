@@ -14,6 +14,12 @@ module.exports = function(env) {
     plugins: [],
 
     resolve: {
+      alias: {
+        'eventEmitter/EventEmitter': 'wolfy87-eventemitter/EventEmitter',
+        'get-style-property/get-style-property': 'desandro-get-style-property/get-style-property',
+        'matches-selector/matches-selector': 'desandro-matches-selector/matches-selector',
+        'classie/classie': 'desandro-classie/classie'
+      },
       extensions: ['', '.js']
     },
 
@@ -28,6 +34,23 @@ module.exports = function(env) {
           test: /\.json$/,
           loader: 'json-loader',
           exclude: /node_modules/
+        },
+        {
+          test: /\.yml/,
+          loader: 'json-loader!yaml-loader',
+          exclude: /node_modules/
+        },
+        {
+          test: /\.css/,
+          loader: 'style-loader!css-loader'
+        },
+        {
+            test: /\.csv$/, 
+            loader: 'dsv-loader' 
+        },
+        {
+          test: /\.html/,
+          loader: 'raw-loader'
         }
       ]
     }
@@ -44,15 +67,6 @@ module.exports = function(env) {
       filename: '[name].js',
       publicPath: publicPath
     };
-
-    // Factor out common dependencies into a shared.js
-    // webpackConfig.plugins.push(
-    //   new webpack.optimize.CommonsChunkPlugin({
-    //     name: 'shared',
-        // filename: env === 'production' ? '[name]-[hash].js' : '[name].js'
-      //   filename: '[name].js'
-      // })
-    // );
   }
 
   if (env === 'development') {

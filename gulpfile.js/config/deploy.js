@@ -1,6 +1,6 @@
 var config = require('./')
 
 module.exports = {
-  url: '',
+  url: 'http://greypants.github.io/gulp-starter/',
   src: config.publicDirectory + '/**/*'
 }
