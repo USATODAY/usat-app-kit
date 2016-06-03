@@ -3,10 +3,11 @@ var gutil = require('gulp-util');
 var ftp = require( 'vinyl-ftp' );
 var YAML = require('yamljs');
 var graphic_config = YAML.load(__dirname + '/../../app/data/app_config.yml');
+var packageJSON = require(__dirname + '/../../package.json');
 
 var FTP_USER = process.env.USAT_FTP_USER;
 var FTP_PASS = process.env.USAT_FTP_PASS;
-var dest = "/17200/experiments/usatoday/responsive/" + graphic_config.graphic_slug;
+var dest = "/17200/experiments/usatoday/" + packageJSON.config.year + "/" + packageJSON.config.month + "/" + graphic_config.app_slug;
 
 gulp.task( 'upload', function () {
 
