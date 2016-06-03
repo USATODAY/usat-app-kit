@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 var fs = require('fs');
-var app_config = require('../app/data/app_config.json');
+var YAML = require('yamljs');
+var app_config = require('../app/data/app_config.yml');
 var npm_package = require('../package.json');
 var pathArray = __dirname.split('/');
 var slug = pathArray[pathArray.length - 2];
@@ -24,7 +25,7 @@ npm_package.config.year = year;
 npm_package.config.month = month;
 npm_package.config.app_slug = slug;
 
-fs.writeFile(__dirname + '/../app/data/app_config.json', JSON.stringify(app_config), function(err) {
+fs.writeFile(__dirname + '/../app/data/app_config.yml', YAML.stringify(app_config, 4), function(err) {
     if(err) {
         return console.log(err);
     }
