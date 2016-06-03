@@ -1,6 +1,6 @@
 var jQuery = window.jQuery = require('jQuery');
 var Analytics = require('./lib/analytics');
-var app_config = require('../data/app_config.json');
+var app_config = require('../data/app_config.yml');
 
 
 
