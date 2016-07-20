@@ -43,7 +43,7 @@ var Analytics = require('./lib/analytics');
 ```
 Make sure analytics are initialized once with slug as namespace parameter
 ```javascript
-Analytics.setup(config.graphic_slug);
+Analytics.setup(app_config.app_slug);
 ```
 
 You can also pass an options object as an optional, second parameter.
