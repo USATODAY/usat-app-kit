@@ -34,3 +34,40 @@ $ gulp
 $ gulp build:production
 $ gulp server
 ```
+
+## Analytics
+
+To track events and page views on USA TODAY's Omniture account, require the analytics library
+```javascript
+var Analytics = require('./lib/analytics');
+```
+Make sure analytics are initialized once with slug as namespace parameter
+```javascript
+Analytics.setup(config.graphic_slug);
+```
+
+You can also pass an options object as an optional, second parameter.
+
+```javascript
+Analytics.setup(app_config.app_slug, {
+  embedded: true,
+  trackTime: true,
+  ssts: 'news/politics/elections',
+  cst: 'news/politics/elections'
+});
+```
+All values are optional, but can override default settings, such as ssts, and cst, as well as enable time on page tracking, and specifying `embedded: true`, which disables initial page view.
+
+Time tracking fires a click event for users who linger on the page for discrete amounts of time. Currently this is set to:
+
+- 30 seconds
+- 1 minutes
+- 5 minutes
+- 10 minutes
+
+Subsequently track page views and events with
+
+```javascript
+Analytics.click($EVENT_NAME)
+Analytics.pageView($EVENT_NAME)
+```
