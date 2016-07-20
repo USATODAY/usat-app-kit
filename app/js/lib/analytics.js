@@ -1,12 +1,35 @@
 (function(root, factory) {
     if(typeof define === "function" && define.amd) {
-        define(['lodash'], factory);
+        define([], factory);
   } else if(typeof module === "object" && module.exports) {
-        module.exports = factory(require('lodash'));
+        module.exports = factory();
   } else {
-        root.Analytics = factory(_);
+        root.Analytics = factory();
   }
-}(this, function(_) {
+}(this, function() {
+
+    //Object.assign pollyfill
+    if (typeof Object.assign != 'function') {
+        Object.assign = function(target) {
+            'use strict';
+            if (target == null) {
+              throw new TypeError('Cannot convert undefined or null to object');
+            }
+
+            target = Object(target);
+            for (var index = 1; index < arguments.length; index++) {
+                var source = arguments[index];
+                if (source != null) {
+                    for (var key in source) {
+                        if (Object.prototype.hasOwnProperty.call(source, key)) {
+                            target[key] = source[key];
+                          }
+                    }
+                }
+            }
+        return target;
+      };
+    }
 
     function getScript(src, callback) {
         var s = document.createElement('script');
@@ -129,27 +152,27 @@
         },
      
         setPageViewArgs: function(options) {
-            _.extend(this.pageViewArgs, options);
+            Object.assign(this.pageViewArgs, options);
             return this;
         },
      
         setClickArgs: function(options) {
-            _.extend(this.clickArgs, options);
+            Object.assign(this.clickArgs, options);
             return this;
         },
      
         click: function(eventName, options) {
             eventName = eventName.replace(/ /g, '-');
             if (options) {
-                options = _.extend({}, this.clickArgs, options);
+                options = Object.assign({}, this.clickArgs, options);
             } else if (eventName) {
                 // replace event name spaces with '-'
                 eventName = eventName.replace(/ /g, '-');
-                options = _.extend({}, this.clickArgs, {
+                options = Object.assign({}, this.clickArgs, {
                     clickName: this.clickArgs.clicknameBase + eventName
                 });
             } else {
-                options = _.extend({}, this.clickArgs);
+                options = Object.assign({}, this.clickArgs);
             }
 
             if (window.utag) {
@@ -167,7 +190,7 @@
         // load utag script, loading with require causes errors, utag requires utag_data
         loadUtag: function() {
             isLoading = true;
-            window.utag_data = _.extend(this.pageViewArgs, {
+            window.utag_data = Object.assign(this.pageViewArgs, {
                 partner_type: 'basic'
             });
             var self = this,
@@ -176,9 +199,10 @@
                 getScript(src, function() {
                     isLoading = false;
                     //loop through click queue
-                    _.each(queue, function(click) {
+                    for (var i = 0; i < queue.length; i++) {
+                        var click = queue[i]
                         self.click(click[0], click[1]);
-                    });
+                    };
 
                     //reset queue
                     queue = [];
@@ -188,12 +212,12 @@
         pageView: function(eventName, options) {
             if (window.utag) {
                 if (options) {
-                    options = _.extend(this.pageViewArgs, options);
+                    options = Object.assign(this.pageViewArgs, options);
                 }
                 else if (eventName)  {
                     // replace event name spaces with '-'
                     eventName = eventName.replace(/ /g, '-');
-                    options = _.extend(this.pageViewArgs, {
+                    options = Object.assign(this.pageViewArgs, {
                         ssts: this.pageViewArgs.ssts + '/' + eventName
                     });
                 }
@@ -202,7 +226,7 @@
                 }
                 // initial page load, needed to use utag
                 if (!this.hasUtag) {
-                    options = _.extend(options, {
+                    options = Object.assign(options, {
                         partner_type: 'basic'
                     });
                     this.hasUtag = true;
