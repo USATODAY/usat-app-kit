@@ -21,6 +21,86 @@
         document.querySelector('head').appendChild(s);
     }
 
+    var timerInterval;
+    var startTime;
+    var currentBucket = null;
+
+    
+
+    function getTimeBucket(seconds) {
+        var timeBuckets = [
+            {
+                startTime: 30,
+                endTime: 60,
+                label: "30-seconds"
+            },
+            {
+                startTime: 60,
+                endTime: 300,
+                label: "one-minute"
+            },
+            {
+                startTime: 300,
+                endTime: 600,
+                label: "five-minutes"
+            },
+            {
+                startTime: 600,
+                endTime: 1200,
+                label: "ten-minutes"
+            }
+
+        ];
+        var currentBucketIndex = 0;
+        if (seconds < timeBuckets[0].startTime) {
+            return null;
+        }
+
+        if (seconds <= timeBuckets[timeBuckets.length - 1].endTime) {
+            while (seconds >= timeBuckets[currentBucketIndex].endTime) {
+                currentBucketIndex++;
+            }
+        } else {
+            currentBucketIndex = timeBuckets.length - 1;
+        }
+
+        if (currentBucketIndex > timeBuckets.length - 1) {
+            currentBucketIndex = timeBuckets.length - 1;
+        }
+
+        return timeBuckets[currentBucketIndex]
+    }
+
+    function getSecondsSince(startTime) {
+        if (!startTime) {
+            return 0;
+        }
+        var currentTime = new Date();
+        var totalTime = Math.abs(currentTime - startTime);
+        var seconds = Math.floor(totalTime/1000);
+        return seconds;
+    }
+
+    function checkTimer() {
+        var totalTime = getSecondsSince(startTime);
+        var bucket = getTimeBucket(totalTime);
+        if (bucket) {
+            if (!currentBucket || bucket.endTime != currentBucket.endTime) {
+                currentBucket = bucket;
+                reportTime(bucket);
+            }
+        }
+    }
+
+    function reportTime(bucket) {
+        Analytics.click('time-' + bucket.label);
+    }
+
+    function startTimeReporting() {
+        startTime = new Date();
+        timerInterval = setInterval(checkTimer, 1000);
+    }
+
     //array to hold queued analytics calls while library loads
     var queue = [];
     var isLoading = false;
@@ -60,17 +140,16 @@
      
         click: function(eventName, options) {
             eventName = eventName.replace(/ /g, '-');
-            
             if (options) {
-                options = _.extend(this.clickArgs, options);
+                options = _.extend({}, this.clickArgs, options);
             } else if (eventName) {
                 // replace event name spaces with '-'
                 eventName = eventName.replace(/ /g, '-');
-                options = _.extend(this.clickArgs, {
+                options = _.extend({}, this.clickArgs, {
                     clickName: this.clickArgs.clicknameBase + eventName
                 });
             } else {
-                options = this.clickArgs;
+                options = _.extend({}, this.clickArgs);
             }
 
             if (window.utag) {
@@ -83,7 +162,6 @@
                     this.loadUtag();
                 }
             }
-
         },
      
         // load utag script, loading with require causes errors, utag requires utag_data
@@ -94,11 +172,9 @@
             });
             var self = this,
                 useSSL = 'https:' === document.location.protocol,
-                // src = (useSSL ? 'https:' : 'http:') + '//tealium.hs.llnwd.net/o43/utag/gci/usat/prod/utag.js',
                 src = "//tags.tiqcdn.com/utag/gci/usat/prod/utag.js";
                 getScript(src, function() {
                     isLoading = false;
-
                     //loop through click queue
                     _.each(queue, function(click) {
                         self.click(click[0], click[1]);
@@ -107,11 +183,6 @@
                     //reset queue
                     queue = [];
                 });
-            //     script = document.createElement('script');
-            // script.src = src;
-            // document.getElementsByTagName('head')[0].appendChild(script);
-            // _.delay(function() {console.log(window.utag)}, 100);
-
         },
      
         pageView: function(eventName, options) {
@@ -136,7 +207,6 @@
                     });
                     this.hasUtag = true;
                 }
-                // console.log('view', this.pageViewArgs, options);
                 window.utag.track('view', options);
             }
             else {
@@ -153,6 +223,10 @@
                 this.setPageViewArgs(opts);
 
                 this.loadUtag();
+
+                if (opts.trackTime == true) {
+                    startTimeReporting();
+                }
 
                 this.isInitialized = true;
             }
