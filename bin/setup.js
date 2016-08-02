@@ -6,7 +6,6 @@ var pathArray = __dirname.split('/');
 var slug = pathArray[pathArray.length - 2];
 var app_config = YAML.load(__dirname + '/../app/data/app_config.yml');
 
-console.log(app_config);
 app_config.app_slug = slug;
 
 var date = new Date();
@@ -21,6 +20,8 @@ if (month < 10) {
 if (!npm_package.config) {
     npm_package.config = {};
 };
+var asset_base_path = "http://www.gannett-cdn.com/experiments/usatoday/responsive/" + year + "/" + month + "/" + app_config.app_slug;
+app_config.asset_base_path = asset_base_path;
 
 npm_package.name = slug
 npm_package.config.year = year.toString();
@@ -33,7 +34,7 @@ fs.writeFile(__dirname + '/../app/data/app_config.yml', YAML.stringify(app_confi
     }
 });
 
-fs.writeFile(__dirname + '/../package.json', JSON.stringify(npm_package), function(err) {
+fs.writeFile(__dirname + '/../package.json', JSON.stringify(npm_package, null, 4), function(err) {
     if(err) {
         return console.log(err);
     }
