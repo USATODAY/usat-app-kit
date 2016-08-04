@@ -58,7 +58,8 @@ module.exports = function(env) {
 
   if (env !== 'test') {
     webpackConfig.entry = {
-      main: ['./main.js']
+      main: ['./main.js'],
+      adMock: ['./adMock.js']
     };
 
     webpackConfig.output = {
@@ -71,6 +72,7 @@ module.exports = function(env) {
 
   if (env === 'development') {
     webpackConfig.devtool = 'source-map';
+    // webpackConfig.entry.adMock = ['./adMock.js'];
     webpack.debug = true;
   }
 
